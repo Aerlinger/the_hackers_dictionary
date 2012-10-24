@@ -1,0 +1,20 @@
+<div id="brand">
+  <%= link_to root_path, {id: "brand_link"} do %>
+      <h1>Logo</h1>
+  <% end %>
+</div>
+<%= category_nav_links %>
+<div class="search-input">
+  <input id="search_box" size="25" type="text">
+  <input id="search_for_name" type="radio" name="search_group" value="For Name"> Search for Name
+  <input id="search_for_category" type="radio" name="search_group" value="For Category"> Search for Category
+  <input id="search_submit" size="25" name="submit" type="submit" value="Go">
+</div>
+<hr>
+<br>
+<%= alphabetical_nav_links %>
+<div id="login_box">
+  <%= link_to "Log In", new_user_session_path %>
+  <%= link_to "Sign Up", new_user_registration_path %>
+</div>
+<hr>

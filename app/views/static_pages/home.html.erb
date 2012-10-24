@@ -1,0 +1,7 @@
+<%= content_for(:title, "Hacker terms from the hacker community") %>
+
+<h1>The Hacker's Dictionary</h1>
+<p id="slogan"><%= Definition.all.count %> Hacker terms from the hacker community</p>
+
+<%= render partial: "top_rated" %>
+<%= render partial: "create_definition" %>
