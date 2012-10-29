@@ -2,7 +2,7 @@
 <html>
 <head>
   <title><%= full_title(yield :title) %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -10,10 +10,24 @@
 
 <%= render partial: "layouts/header" %>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
 
-<%= yield %>
+
+<div class="wrapper">
+  <div class="border-thin left right">
+    <div class="container">
+
+      <% if flash.any? %>
+          <p class="info"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </div>
+  <div class="push"></div>
+</div>
+
+<%= render partial: "layouts/footer" %>
 
 </body>
 </html>

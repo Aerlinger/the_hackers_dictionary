@@ -1,20 +1,51 @@
-<div id="brand">
-  <%= link_to root_path, {id: "brand_link"} do %>
-      <h1>Logo</h1>
-  <% end %>
+<div class="navbar">
+  <div class="navbar-inner custom-navbar">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <%= link_to root_path, {id: "brand", class: "brand custom-brand"} do %>
+          <!-- <img src="img/logo.png" alt="Super slogan"> -->
+          The Hacker's Dictionary<span class="brand-color">.</span>
+      <% end %>
+      <div class="nav-collapse in" style="height:auto;">
+        <ul class="nav pull-right">
+          <% if user_signed_in? %>
+              <%= render partial: "layouts/user_status" %>
+          <% else %>
+              <li> <%= link_to "Home" %> </li>
+              <li> <%= link_to "Sign In", new_user_session_path, id: "sign_in" %> </li>
+          <% end %>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
 </div>
-<%= category_nav_links %>
-<div class="search-input">
-  <input id="search_box" size="25" type="text">
-  <input id="search_for_name" type="radio" name="search_group" value="For Name"> Search for Name
-  <input id="search_for_category" type="radio" name="search_group" value="For Category"> Search for Category
-  <input id="search_submit" size="25" name="submit" type="submit" value="Go">
+
+
+<div class="subheader">
+  <div class="container">
+
+    <div class="category_links pull-left">
+      <span>Top Categories:</span>
+      <%= category_nav_links %>
+      <%= link_to raw("Show All Categories &raquo"), categories_path, class: "category_link", id: "show_all_categories" %>
+    </div>
+
+    <div class="search-input pull-right">
+      <input id="search_box" size="25" type="text" placeholder="Search">
+      <a id="search_submit" class="btn btn-small btn-inverse">
+        <i class="icon-search icon-small"></i>
+      </a>
+    </div>
+
+  </div>
 </div>
-<hr>
-<br>
-<%= alphabetical_nav_links %>
-<div id="login_box">
-  <%= link_to "Log In", new_user_session_path %>
-  <%= link_to "Sign Up", new_user_registration_path %>
-</div>
-<hr>
+
+
+
+<%# alphabetical_nav_links %>

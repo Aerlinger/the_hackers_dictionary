@@ -11,20 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023160752) do
+ActiveRecord::Schema.define(:version => 20121029153643) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "aliases"
   end
 
   create_table "categories_definitions", :id => false, :force => true do |t|
-    t.integer "category_id",   :null => false
-    t.integer "definition_id", :null => false
+    t.integer "category_id"
+    t.integer "definition_id"
   end
 
-  add_index "categories_definitions", ["category_id", "definition_id"], :name => "index_categories_definitions_on_category_id_and_definition_id", :unique => true
+  add_index "categories_definitions", ["category_id", "definition_id"], :name => "index_categories_definitions_on_category_id_and_definition_id"
 
   create_table "definitions", :force => true do |t|
     t.string   "word"
@@ -36,13 +37,18 @@ ActiveRecord::Schema.define(:version => 20121023160752) do
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.text     "links",           :default => ""
+    t.text     "references",      :default => ""
+    t.string   "first_character"
+    t.integer  "user_id"
   end
 
+  add_index "definitions", ["word", "first_character", "author", "tags"], :name => "definitions_index", :unique => true
+
   create_table "users", :force => true do |t|
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -51,9 +57,10 @@ ActiveRecord::Schema.define(:version => 20121023160752) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "username"
+    t.boolean  "admin",                  :default => false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

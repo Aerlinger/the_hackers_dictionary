@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Static pages" do
 
-  before { visit root_path }
+  before(:each) { visit root_path }
   subject { page }
 
   it_behaves_like "all pages"
@@ -16,13 +16,14 @@ describe "Static pages" do
     describe "logo" do
       it { should have_css("#brand") }
       it "should link to the homepage" do
-        click_link("brand_link")
+        click_link("brand")
         current_path.should eq root_path
       end
     end
 
+
     describe "top rated links" do
-      it { should have_selector('div', class: "top-links") }
+      it { should have_css('div.definition') }
     end
 
     describe "submit your own term box" do
@@ -33,19 +34,25 @@ describe "Static pages" do
       end
     end
 
-    describe "have login links" do
-      it { should have_css 'div#login_box' }
-      it { should have_selector 'a', text: "Log In" }
+    describe "login links" do
+      it { should have_selector 'a', text: "Sign In" }
 
       describe "that link to the login page" do
-        before { click_link "Log In" }
-        it { should have_content("Email") }
-        it { should have_content("Password") }
-        it { should have_content("Log In") }
-        it { should have_css("input#user_email") }
-        it { should have_css("input#user_password") }
+        before { click_link "sign_in" }
+
+        it "should redirect to the Sign In page" do
+          current_path.should eq new_user_session_path
+        end
+
+        describe "with correct form data" do
+          it { should have_content("Username") }
+          it { should have_content("Password") }
+          it { should have_content("Sign In") }
+          it { should have_css("input#user_password") }
+        end
       end
     end
+
   end
 
 

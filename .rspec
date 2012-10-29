@@ -1,3 +1,1 @@
---color
---format html -o "spec/rspec_output.html"
---drb
+--colour

@@ -5,6 +5,7 @@ class DefinitionsController < ApplicationController
   # GET /definitions
   # GET /definitions.json
   def index
+
     if params[:letter]
       @definitions = Definition.starts_with(params[:letter])
     else

@@ -5,9 +5,11 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'validates_email_format_of'
+gem 'ransack'
 gem 'sqlite3'
 gem 'devise'
-
+gem 'twitter-bootstrap-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,13 +26,15 @@ end
 group :test, :development do
   gem "rspec-rails"
   gem "factory_girl_rails"
+  gem "guard-spork"
+  gem "guard-rspec"
+  gem 'guard-livereload'
+  gem "faker"
 end
 
 group :test do
   gem "spork"
   gem 'launchy'
-  gem "guard-spork"
-  gem "faker"
   gem "capybara"
   gem 'growl'
   gem 'rb-fsevent'

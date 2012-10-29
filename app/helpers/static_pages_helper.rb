@@ -7,17 +7,20 @@ module StaticPagesHelper
   def alphabetical_nav_links(separator = " ")
     alphabet = ("A".."Z")
 
+
     alphabetical_links = alphabet.collect do |letter|
-      link_to(letter, definitions_path(letter: letter), {id: letter, class: "alphabet_links"})
+      content_tag(:li) do
+        link_to(letter, definitions_path(letter: letter), {id: letter})
+      end
     end
 
-    raw alphabetical_links.join(separator)
+    content_tag(:ul, class: "alphabetical") { raw alphabetical_links.join(separator) }
   end
 
-  def category_nav_links(num=20, separator = " / ")
+  def category_nav_links(num=10, separator = " ")
 
     category_links = Category.limit(num).each_with_index.collect do |category, index|
-      link_to(category.name, category, {id: "category#{index}", class: "category_links"})
+      link_to(category.name, category, {id: "category#{index}", class: "category_link"})
     end
 
     raw category_links.join(separator)

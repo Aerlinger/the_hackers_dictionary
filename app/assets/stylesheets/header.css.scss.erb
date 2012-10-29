@@ -1,0 +1,65 @@
+@import "all_pages.css.scss.erb";
+
+.subheader {
+    border-bottom: 1px solid #d3d3d3;
+    background: url(<%= asset_path "backgrounds/pixelBG.jpg"%>)
+}
+
+div.category_links {
+
+    position: relative;
+    top: 15px;
+    margin-bottom: 0;
+
+    .category_link {
+        text-decoration: none;
+        padding: 1px 4px;
+        background: white;
+
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+        border-left: 1px solid black;
+    }
+}
+
+.search-input {
+    display: table;
+    margin: 5px;
+    & * {
+        margin: 0 !important;
+    }
+
+    a {
+        height: 17px;
+        padding: 3px 6px;
+        border: 1px;
+
+        i {
+          position: relative;
+          top: 2px;
+          opacity: .5;
+        }
+    }
+
+}
+
+ul.alphabetical {
+    float: right;
+    li {
+        margin: -1px;
+        display: inline;
+        font-size: 11px;
+        a {
+            &:hover {
+                text-decoration: none;
+                background-color: $alphabeticalLinkHover;
+            }
+        }
+    }
+}
+
+ul.category_nav {
+    li {
+        display: inline;
+    }
+}

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Categories" do
 
-  before { visit definitions_path }
+  #before { visit definitions_path }
   subject { page }
 
   it "should have GET categories_path" do

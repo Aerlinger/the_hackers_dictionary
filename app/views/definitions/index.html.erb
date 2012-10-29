@@ -1,33 +1,9 @@
-<h1>Listing definitions<%= " starting with '#{params[:letter]}'" if params[:letter] %></h1>
 
-<table>
-  <tr>
-    <th>Word</th>
-    <th>Definition</th>
-    <th>Example</th>
-    <th>Tags</th>
-    <th>Author</th>
-    <th>Author email</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+
+<h2>Listing definitions<%= " starting with '#{params[:letter]}'" if params[:letter] %></h2>
 
 <% @definitions.each do |definition| %>
-  <tr>
-    <td><%= definition.word %></td>
-    <td><%= definition.definition_text %></td>
-    <td><%= definition.example %></td>
-    <td><%= definition.tags %></td>
-    <td><%= definition.author %></td>
-    <td><%= definition.author_email %></td>
-    <td><%= link_to 'Show', definition %></td>
-    <td><%= link_to 'Edit', edit_definition_path(definition) %></td>
-    <td><%= link_to 'Destroy', definition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <%= render partial: "definition_preview", locals: {definition: definition} %>
 <% end %>
-</table>
-
-<br />
 
 <%= link_to 'New Definition', new_definition_path %>

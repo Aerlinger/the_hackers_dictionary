@@ -27,7 +27,7 @@ class Schema1 < ActiveRecord::Migration
   create_table "categorizations", :force => true do |t|
     t.integer  "category_id"
     t.integer  "definition_id"
-    t.datetime "created_at",    :null => falseÓ
+    t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
 

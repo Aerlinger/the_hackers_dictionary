@@ -12,27 +12,27 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :word %><br />
+    <%= f.label :word %>
     <%= f.text_field :word %>
   </div>
   <div class="field">
-    <%= f.label :definition_text %><br />
+    <%= f.label :definition_text %>
     <%= f.text_area :definition_text %>
   </div>
   <div class="field">
-    <%= f.label :example %><br />
+    <%= f.label :example %>
     <%= f.text_area :example %>
   </div>
   <div class="field">
-    <%= f.label :tags %><br />
-    <%= f.text_field :tags %>
+    <%= f.label :tags %>
+    <%= f.text_field :tags, placeholder: "e.g. misc, c++, sockets" %>
   </div>
   <div class="field">
-    <%= f.label :author %><br />
-    <%= f.text_field :author %>
+    <%= f.label :author %>
+    <%= f.text_field :author, placeholder: "Anonymous" %>
   </div>
   <div class="field">
-    <%= f.label "author_email (optional)" %><br />
+    <%= f.label "author_email (optional)" %>
     <%= f.text_field :author_email %>
   </div>
   <div class="actions">

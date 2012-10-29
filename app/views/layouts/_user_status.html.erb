@@ -1,0 +1,5 @@
+<span>Logged in as: </span>
+<%= link_to current_user.username %> |
+<%= link_to "Your Definitions" %> |
+<%= link_to "Settings" %> |
+<%= link_to "Sign Out", destroy_user_session_path, id: "sign_out", method: :delete %>

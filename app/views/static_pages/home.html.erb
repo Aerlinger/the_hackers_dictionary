@@ -1,7 +1,25 @@
 <%= content_for(:title, "Hacker terms from the hacker community") %>
 
-<h1>The Hacker's Dictionary</h1>
-<p id="slogan"><%= Definition.all.count %> Hacker terms from the hacker community</p>
+<div class="row">
+  <div class="span5">
+    <h4 class="page-header">Most Recent Entries</h4>
+    <% Definition.most_recent(40).each do |definition| %>
+        <%= render partial: "definitions/definition_preview", locals: {definition: definition} %>
+    <% end %>
+  </div>
 
-<%= render partial: "top_rated" %>
-<%= render partial: "create_definition" %>
+  <div class="span5">
+    <h4 class="page-header">Most Popular Entries</h4>
+    <% Definition.most_recent(40).each do |definition| %>
+        <%= render partial: "definitions/definition_preview", locals: {definition: definition} %>
+    <% end %>
+  </div>
+
+  <div class="span2">
+    <div class="hero-unit extend-right">
+      <h5>Create your own definition</h5>
+      <input id="create_definition_text" type="text" size="15" />
+      <%= link_to "Create", new_definition_path, id: "create_definition" %>
+    </div>
+  </div>
+</div>
