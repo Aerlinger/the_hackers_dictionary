@@ -7,9 +7,9 @@ shared_examples_for "all pages" do
     page.should have_css("a.category_link")
   end
 
-
   it "should show search box" do
     page.should have_selector("div", id: "search-input")
     page.should have_selector("input", id: "search_box")
   end
+
 end

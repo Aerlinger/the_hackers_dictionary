@@ -100,6 +100,22 @@ describe "Definitions" do
       }.to change { Category.count }.by(1)
     end
 
+    it "should create multiple tags from a comma delimited string" do
+      d = Definition.create(word: "test4", definition_text: "This is a test definition", tags: "one,  two, three, four")
+
+      d.tags.should == ["ONE", "TWO", "THREE", "FOUR"]
+    end
+
+    it "should create multiple tags from a semicolon delimited string" do
+      d = Definition.create(word: "test4", definition_text: "This is a definition", tags: "one;  two; three; four")
+      d.tags.should eq ["ONE", "TWO", "THREE", "FOUR"]
+    end
+
+    it "should capitalize tags" do
+      d = Definition.create(word: "test4", definition_text: "This is a definition", tags: ["one"])
+      d.tags.should eq ["ONE"]
+    end
+
   end
 
 end

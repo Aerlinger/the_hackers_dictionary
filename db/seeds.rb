@@ -23,18 +23,32 @@ admin.password = "password"
 admin.password_confirmation = "password"
 admin.email = "admin@thehackersdictionary.com"
 admin.save!
+admin.toggle!(:admin)
 
-5.times do |num|
-  user = User.new
-  user.username = "user#{num}"
-  user.password = "password"
-  user.email = "user#{num}@thehackersdictionary.com"
-  user.password_confirmation = "password"
-  user.save!
-end
+if(Rails.env.production?)
+  aerlinger = User.new(password: "secret")
+  aerlinger.username = "aerlinger"
+  aerlinger.password = "newton"
+  aerlinger.password_confirmation = "newton"
+  aerlinger.email = "aerlinger@thehackersdictionary.com"
+  aerlinger.save!
+  aerlinger.toggle!(:admin)
+else
+  5.times do |num|
+    user = User.new
+    user.username = "user#{num}"
+    user.password = "password"
+    user.email = "user#{num}@thehackersdictionary.com"
+    user.password_confirmation = "password"
+    user.save!
+  end
 
-2000.times do
-  Definition.create!( word: Faker::Internet.domain_word, definition_text: Faker::Lorem.paragraph(3), tags: categories.shuffle[1..(1+rand(4))] )
+  definition_count = 50
+  definition_count = 2000 if Rails.env.development?
+
+  definition_count.times do
+    Definition.create!( word: Faker::Internet.domain_word, definition_text: Faker::Lorem.paragraph(3), tags: categories.shuffle[1..(1+rand(4))] )
+  end
 end
 
 puts "#{User.count} #{ "User".pluralize(User.count) } created"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121029153643) do
+ActiveRecord::Schema.define(:version => 20121029185557) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -41,8 +41,6 @@ ActiveRecord::Schema.define(:version => 20121029153643) do
     t.string   "first_character"
     t.integer  "user_id"
   end
-
-  add_index "definitions", ["word", "first_character", "author", "tags"], :name => "definitions_index", :unique => true
 
   create_table "users", :force => true do |t|
     t.datetime "created_at",                                :null => false

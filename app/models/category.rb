@@ -9,7 +9,10 @@ class Category < ActiveRecord::Base
   private
 
   def convert_to_uppercase
-    self.name = name.upcase
+    if self.name?
+      self.name.strip!
+      self.name.upcase!
+    end
   end
 
 end

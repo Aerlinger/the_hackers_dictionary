@@ -1,3 +1,31 @@
+<%= div_for definition do %>
+
+    <h4>
+      definition.word
+    </h4>
+
+    <% if(current_user && current_user.admin == true) %>
+        <div class="edit-delete" style="float: right">
+          <%= link_to 'Edit', edit_definition_path(definition) %> |
+          <%= link_to 'Delete', definition, method: :delete, data: {confirm: 'Are you sure?'} %>
+        </div>
+    <% end %>
+
+    <p class="definition-block">
+      <%= definition.definition_text %>
+    </p>
+    <small class="author">Submitted by: <%= definition.user %>  <%= definition.created_at %></small>
+    <span class="category">
+      <small>
+        tags:
+        <% definition.categories.each do |category| %>
+            <%= link_to category.name, category %>
+        <% end %>
+      </small>
+    </span>
+
+<% end %>
+
 <p>
   <b>Word:</b>
   <%= definition.word %>

@@ -1,6 +1,6 @@
 class Definition < ActiveRecord::Base
   after_save :add_to_categories
-  before_save :set_first_character
+  before_save :set_first_character, :clean_tags
 
   attr_protected :starts_with
   attr_accessible :author, :author_email, :word, :definition_text, :example, :tags, :word
@@ -21,7 +21,17 @@ class Definition < ActiveRecord::Base
 
   def set_first_character
     self.first_character = word.first.downcase
-    tags.map!(&:upcase)
+  end
+
+  def clean_tags
+    if tags.is_a? String
+      self.tags = tags.split(/,|;/)
+    end
+
+    tags.map do |tag|
+      tag.strip!
+      tag.upcase!
+    end
   end
 
   def add_to_categories

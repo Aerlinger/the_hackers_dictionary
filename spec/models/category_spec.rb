@@ -15,7 +15,7 @@ describe Category do
 
   describe "is not valid" do
     it "without a name" do
-      invalid_category = Category.new()
+      invalid_category = Category.new
       invalid_category.should_not be_valid
     end
 
