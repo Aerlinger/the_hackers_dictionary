@@ -20,6 +20,9 @@ describe "User Pages" do
       page.current_path.should eq root_path
     end
 
+    it "should have link to profile page" do
+    end
+
     it "should not be admin" do
       @new_user.should_not be_admin
     end
@@ -53,6 +56,7 @@ describe "User Pages" do
         end
       end
     end
+
   end
 
 end

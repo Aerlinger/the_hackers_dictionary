@@ -16,4 +16,9 @@ FactoryGirl.define do
     password "secret"
   end
 
+  factory :definition_vote do
+    value ""
+    definition_id ""
+    user_id 1
+  end
 end

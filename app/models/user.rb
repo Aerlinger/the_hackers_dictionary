@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -13,7 +14,15 @@ class User < ActiveRecord::Base
 
   validates_presence_of :username, :password, :password_confirmation
   validates :email, email_format: {message: "Email invalid"}, if: :email_present?
-  validates :username, format: {with: /^[A-Za-z\d_]+$/}, length: {minimum: 3, maximum: 15}, uniqueness: { case_sensitive: false }
+  validates :username, format: {with: /^[A-Za-z|_]+\d*$/}, length: {minimum: 3, maximum: 15}, uniqueness: { case_sensitive: false }
+
+  def total_votes
+    # This is from RailsCasts Episode #364:
+    # DefinitionVote.joins(:definition).where(definitions: {user_id: self.id}).sum('value')
+    #
+    # Modified for my own purposes as:
+    DefinitionVote.joins(:definition).where(user_id: self.id).sum('value')
+  end
 
   private
 

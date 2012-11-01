@@ -7,6 +7,7 @@ class Definition < ActiveRecord::Base
   serialize :tags
 
   belongs_to :user
+  has_many :definition_votes
   has_and_belongs_to_many :categories
 
   validates_presence_of :word, :definition_text, :tags
@@ -16,6 +17,13 @@ class Definition < ActiveRecord::Base
   scope :most_recent, lambda { |limit=10| order("created_at desc").limit(limit) }
   scope :starts_with, lambda { |letter| where(first_character: letter.downcase) }
 
+  def self.by_votes
+    select('definitions.*, coalesce(value, 0) as votes').joins('left join definition_votes on definition_id=definitions.id').order('votes desc')
+  end
+
+  def votes
+    read_attribute(:votes) || definition_votes.sum(:value)
+  end
 
   private
 

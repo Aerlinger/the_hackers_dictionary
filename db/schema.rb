@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121029185557) do
+ActiveRecord::Schema.define(:version => 20121101192207) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(:version => 20121029185557) do
   end
 
   add_index "categories_definitions", ["category_id", "definition_id"], :name => "index_categories_definitions_on_category_id_and_definition_id"
+
+  create_table "definition_votes", :force => true do |t|
+    t.integer  "value"
+    t.integer  "definition_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "definitions", :force => true do |t|
     t.string   "word"

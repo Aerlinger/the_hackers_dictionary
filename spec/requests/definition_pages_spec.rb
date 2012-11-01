@@ -18,6 +18,7 @@ describe "Definition Pages" do
       should have_css("input[name='commit']")
     end
 
+
     describe "fill in definition form data" do
       before do
         @definition = FactoryGirl.create(:definition)
@@ -53,6 +54,8 @@ describe "Definition Pages" do
         end
 
       end
+
+
     end
   end
 end

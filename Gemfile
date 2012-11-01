@@ -6,6 +6,7 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'validates_email_format_of'
+gem 'activerecord-reputation-system', require: 'reputation_system'
 gem 'ransack'
 gem 'sqlite3'
 gem 'devise'

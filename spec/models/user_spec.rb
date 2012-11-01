@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe User do
 
   before do
@@ -58,6 +60,15 @@ describe User do
       @user.should_not be_valid
     end
 
+    specify "with a name containing a number that is not at the end of the string" do
+      @user.username = "9boo"
+      @user.should_not be_valid
+      @user.username = "bo9o"
+      @user.should_not be_valid
+      @user.username = "_lol_lol6lol_lol_lol6"
+      @user.should_not be_valid
+    end
+
     specify "with a name containing punctuation marks" do
       @user.username = "John!"
       @user.should_not be_valid
@@ -80,9 +91,11 @@ describe User do
       @user.should be_valid
     end
 
-    specify "with a username containing numbers and underscores" do
-      @user.username = "John_Smith87"
-      @user.should be_valid
+    specify "with a username containing numbers and underscores and ending with a number" do
+      ["John_Smith87", "john_test_8", "_john", "_bob", "a"*15].each do |username|
+        @user.username = username
+        @user.should be_valid
+      end
     end
 
   end
