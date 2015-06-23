@@ -6,7 +6,9 @@ class DefinitionsController < ApplicationController
   # GET /definitions.json
   def index
 
-    if params[:letter]
+    if params[:tag]
+      @definitions.tagged_with(params[:tag])
+    elsif params[:letter]
       @definitions = Definition.starts_with(params[:letter])
     else
       @definitions = Definition.all

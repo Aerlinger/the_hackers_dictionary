@@ -1,7 +1,7 @@
 <%= div_for definition do %>
 
     <h4>
-      definition.word
+      <%= definition.word %>
     </h4>
 
     <% if(current_user && current_user.admin == true) %>
@@ -26,32 +26,3 @@
 
 <% end %>
 
-<p>
-  <b>Word:</b>
-  <%= definition.word %>
-</p>
-
-<p>
-  <b>Definition:</b>
-  <%= definition.definition_text %>
-</p>
-
-<p>
-  <b>Example:</b>
-  <%= definition.example %>
-</p>
-
-<p>
-  <b>Tags:</b>
-  <%= definition.tags %>
-</p>
-
-<p>
-  <b>Author:</b>
-  <%= definition.author %>
-</p>
-
-<p>
-  <b>Author email:</b>
-  <%= definition.author_email %>
-</p>

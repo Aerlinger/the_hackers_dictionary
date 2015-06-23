@@ -27,7 +27,7 @@ group :assets do
 end
 
 group :development do
-  gem "better_errors"
+  "better_errors"
 end
 
 group :test, :development do

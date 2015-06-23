@@ -1,0 +1,9 @@
+<h5>
+  <%= link_to definition.word, definition %>
+</h5>
+<% if (current_user && current_user.admin == true) %>
+    <div class="edit-delete" style="float: right">
+      <%= link_to 'Edit', edit_definition_path(definition) %> |
+      <%= link_to 'Delete', definition, method: :delete, data: {confirm: 'Are you sure?'} %>
+    </div>
+<% end %>

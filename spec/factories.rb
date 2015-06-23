@@ -17,8 +17,6 @@ FactoryGirl.define do
   end
 
   factory :definition_vote do
-    value ""
-    definition_id ""
-    user_id 1
+    value 1
   end
 end

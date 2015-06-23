@@ -1,0 +1,10 @@
+<small class="author">Submitted by: <%= definition.user || "Anonymous" %> <br> <%= definition.created_at %></small>
+<span class="category">
+  <small>
+    tags:
+    <% definition.categories.each do |category| %>
+        <%= link_to category.name, category %>
+    <% end %>
+    <p><%= definition.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+  </small>
+</span>

@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe "Static pages" do
 
+  # This is just a sanity check:
+
   before(:each) { visit root_path }
   subject { page }
 
-  it_behaves_like "all pages"
-
   context "Home page should have" do
+
+    specify { true.should be true }
 
     describe "correct title" do
       it { should have_selector('title', text: full_title("Hacker terms from the hacker community")) }
@@ -23,7 +25,10 @@ describe "Static pages" do
 
 
     describe "top rated links" do
-      it { should have_css('div.definition') }
+
+      it "should show link definitions" do
+        should have_css('div.definition')
+      end
     end
 
     describe "submit your own term box" do

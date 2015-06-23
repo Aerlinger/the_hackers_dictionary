@@ -6,6 +6,10 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 
+  def to_param
+    "#{self.id}-#{self.name.downcase}"
+  end
+
   private
 
   def convert_to_uppercase

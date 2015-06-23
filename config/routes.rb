@@ -3,6 +3,8 @@ TheHackersDictionary::Application.routes.draw do
 
   devise_for :users
 
+  root :to => "admin#index", :constraints => {:subdomain => "admin"}
+
   get "static_pages/about"
   get "static_pages/terms"
 

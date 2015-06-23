@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "Definitions" do
 
-  before(:all) do
+  before do
     Definition.delete_all
 
     @definition = FactoryGirl.create(:definition, word: "aardvark")

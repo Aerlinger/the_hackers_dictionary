@@ -7,7 +7,7 @@ describe "User Pages" do
     sign_out_user
   end
 
-  describe "Create a new user" do
+  describe "After signing in" do
 
     before do
       User.delete_all
@@ -18,6 +18,15 @@ describe "User Pages" do
     it "should display sign out link" do
       page.should have_selector 'a', text: "Sign Out"
       page.current_path.should eq root_path
+    end
+
+    it "should show user links" do
+      page.should have_selector 'a', text: @new_user.username
+    end
+
+    it "should link to user profile" do
+      click_link @new_user.username
+      page.should have_content @new_user.username
     end
 
     it "should have link to profile page" do
@@ -40,7 +49,8 @@ describe "User Pages" do
       end
     end
 
-    describe "create aerlinger (admin) account" do
+
+    describe "with aerlinger (admin) account" do
 
       before { @new_user = FactoryGirl.create(:user, username: 'Aerlinger') }
 

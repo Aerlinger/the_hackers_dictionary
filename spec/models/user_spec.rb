@@ -3,9 +3,9 @@ require 'spec_helper'
 describe User do
 
   before do
-    User.delete_all
     @user = FactoryGirl.create(:user)
   end
+
   subject { @user }
 
   it { should be_valid }

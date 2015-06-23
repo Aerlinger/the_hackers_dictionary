@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121101192207) do
+ActiveRecord::Schema.define(:version => 20121103202705) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -42,12 +42,13 @@ ActiveRecord::Schema.define(:version => 20121101192207) do
     t.text     "tags"
     t.string   "author"
     t.string   "author_email"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.text     "links",           :default => ""
     t.text     "references",      :default => ""
     t.string   "first_character"
     t.integer  "user_id"
+    t.boolean  "is_snippet",      :default => false
   end
 
   create_table "users", :force => true do |t|

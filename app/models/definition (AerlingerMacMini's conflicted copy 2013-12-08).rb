@@ -3,13 +3,15 @@ class Definition < ActiveRecord::Base
   before_save :set_first_character, :clean_tags
 
   attr_protected :starts_with
-  attr_accessible :author, :author_email, :word, :definition_text, :example, :categories, :word
+  attr_accessible :author, :author_email, :word, :definition_text, :example, :tags, :word, :tag_list
+  acts_as_taggable
+  serialize :tags
 
   belongs_to :user
   has_many :definition_votes
   has_and_belongs_to_many :categories
 
-  validates_presence_of :word, :definition_text, :categories
+  validates_presence_of :word, :definition_text, :tags
 
   default_scope order("word DESC")
 
@@ -32,7 +34,7 @@ class Definition < ActiveRecord::Base
 
   def clean_tags
     if tags.is_a? String
-      self.categories = tags.categories(/,|;/)
+      self.tags = tags.split(/,|;/)
     end
 
     tags.map do |tag|
